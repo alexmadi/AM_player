@@ -1,0 +1,435 @@
+@mixin respond-to ($media) {
+	$bp_min: 320px;
+	$bp_small: 790px;	
+	$bg_large: 1200px;
+
+	@if $media==mobile {
+		@media only screen and (min-width: $bp_min) and (max-width: $bp_small - 1px) {@content;}  
+	} @else if $media==tablet {
+		@media only screen and (min-width: $bp_small) and (max-width: $bg_large - 1px) {@content;}  
+	} @else if $media==desktop {
+		@media only screen and (min-width: $bg_large) {@content;}  
+	} @else if $media==moreThanMobile {
+		@media only screen and (min-width: $bp_small) {@content;}  
+	} @else if $media==lessThanDesktop {
+		@media only screen and (max-width: $bg_large) {@content;}  
+	}
+}   
+/* 
+Usage
+ 
+.sidebar { 
+	width: 60%; 
+		@include respond-to(mobile) {
+		background: #000;	
+		}
+}
+*/
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+/*
+Usage
+
+input { 
+	@include placeholder {
+    	color: #ccc;
+    }
+}
+*/
+
+@mixin border-radius($radius) {
+		  border-radius: $radius;
+  -webkit-border-radius: $radius;
+	 -moz-border-radius: $radius;
+	  -ms-border-radius: $radius;
+	   -o-border-radius: $radius; 
+   -khtml-border-radius: $radius;  
+}
+/*
+Usage
+
+.item {	
+	@include border-radius;
+}
+*/
+
+@mixin box-sizing ($type: border-box){
+		webkit-box-sizing: $type;
+		  -moz-box-sizing: $type;
+			   box-sizing: $type;  
+}
+/*
+Usage
+
+.item {	
+	@include box-sizing;
+}
+*/
+
+@mixin transition($args) {
+  -webkit-transition: $args;
+	 -moz-transition: $args;
+	  -ms-transition: $args;
+	   -o-transition: $args;
+		  transition: $args;
+}
+/*
+Usage
+
+a {
+	color: gray;
+	@include transition(color .3s ease);
+	&:hover {
+		color: black;
+	}
+}
+*/ 
+
+
+@mixin gradient_2($direction, $start-color, $start-percent, $end-color, $end-percent) {
+	@if $direction == left {
+		background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == right {
+		background-image: -webkit-linear-gradient(right, $start-color $start-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(right, $start-color $start-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to left, $start-color $start-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == bottom {
+		background-image: -webkit-linear-gradient(bottom, $start-color $start-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(bottom, $start-color $start-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to top, $start-color $start-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == top {
+		background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+}
+@mixin gradient_3($direction, $start-color, $start-percent, $midlle-color, $midlle-percent, $end-color, $end-percent) {
+	@if $direction == left {
+		background-image: -webkit-linear-gradient(left, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(left, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to right, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == right {
+		background-image: -webkit-linear-gradient(right, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(right, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to left, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == bottom {
+		background-image: -webkit-linear-gradient(bottom, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(bottom, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to top, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == top {
+		background-image: -webkit-linear-gradient(top, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: -o-linear-gradient(top, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent); 
+		background-image: linear-gradient(to bottom, $start-color $start-percent, $midlle-color $midlle-percent, $end-color $end-percent);
+		background-repeat: repeat-x;		
+	}
+}
+@mixin gradient_4($direction, $color_1, $color_1-percent, $color_2, $color_2-percent, $color_3, $color_3-percent, $color_4, $color_4-percent) {
+	@if $direction == left {
+		background-image: -webkit-linear-gradient(left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == right {
+		background-image: -webkit-linear-gradient(right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == bottom {
+		background-image: -webkit-linear-gradient(bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == top {
+		background-image: -webkit-linear-gradient(top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;		
+	}
+}
+/*
+Usage
+
+.wrapper {
+	width: 100px;
+	@include gradient_2 (bottom,#000,40%,#fff,50%);
+}
+*/
+
+@mixin gradient_4($direction, $color_1, $color_1-percent, $color_2, $color_2-percent, $color_3, $color_3-percent, $color_4, $color_4-percent) {
+	@if $direction == left {
+		background-image: -webkit-linear-gradient(left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == right {
+		background-image: -webkit-linear-gradient(right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(right, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to left, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == bottom {
+		background-image: -webkit-linear-gradient(bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;  
+	}
+	@else if $direction == top {
+		background-image: -webkit-linear-gradient(top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: -o-linear-gradient(top, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent); 
+		background-image: linear-gradient(to bottom, $color_1 $color_1-percent, $color_2 $color_2-percent, $color_3 $color_3-percent, $color_4 $color_4-percent);
+		background-repeat: repeat-x;		
+	}
+}
+
+@mixin pseudo_abs ($pseudo:before,$top:auto, $right:auto, $bottom:auto, $left:auto, $width:auto, $height:auto, $path:"", $x:0, $y:0, $margin:auto) {
+    &:#{$pseudo} {
+		content: '';
+		position: absolute;
+    	top: $top;
+		bottom: $bottom;
+		right: $right;
+    	left: $left;
+		width: $width;
+		height: $height;
+		background: url($path) $x $y no-repeat;
+		margin: $margin;
+	  }
+}
+/* Usage
+.wrapper {
+
+  position: relative;  
+  @include pseudo_abs (after,0,0,auto,auto,50px,50px,"../images/sprites.png",0,0);
+}
+*/
+
+
+@mixin pseudo_absolute ($pseudo:before, $sprite_name: auto, $top:auto, $right:auto, $bottom:auto, $left:auto, $margin:auto) {
+    &:#{$pseudo} {
+		content: '';
+		position: absolute;
+    	top: $top;
+		bottom: $bottom;
+		right: $right;
+    	left: $left;				
+		margin: $margin;
+		@include sprite($sprite_name);
+	  }
+}
+/* Usage
+.wrapper {
+
+  position: relative;  
+ @include pseudo_absolute(before,$arrow_select,15px,0,auto,auto);
+}
+*/
+
+@mixin arrow($pseudo:before,$direction:auto,$color:#000,$size:0,$top:auto,$right:auto,$bottom:auto,$left:auto, $margin_top:auto, $margin_bottom:auto) {
+	
+	@if $direction == self {
+		display: inline-block;
+		height: 0;
+		vertical-align: middle;
+		width: 0;
+	}
+
+	@if $direction == right {
+		&:#{$pseudo} {
+		content:'';
+		position: absolute;
+		top: $top; left: $left; right: $right; bottom: $bottom;
+		border: $size solid transparent;	
+		border-left: $size solid $color;
+		margin-top: $margin_top;
+		margin-bottom: $margin_bottom;
+		}  
+	}
+	@if $direction == left {
+		&:#{$pseudo} {
+		content:'';
+		position: absolute;
+		top: $top; left: $left; right: $right; bottom: $bottom;
+		border: $size solid transparent;	
+		border-right: $size solid $color;
+		margin-top: $margin_top;
+		margin-bottom: $margin_bottom;
+		}  
+	} 
+	@if $direction == top {
+		&:#{$pseudo}  {
+		content:'';
+		position: absolute;
+		top: $top; left: $left; right: $right; bottom: $bottom;
+		border: $size solid transparent;	
+		border-bottom: $size solid $color;
+		margin-top: $margin_top;
+		margin-bottom: $margin_bottom;
+		}  
+	} 
+	@if $direction == bottom {
+		&:#{$pseudo} {
+		content:'';
+		position: absolute;
+		top: $top; left: $left; right: $right; bottom: $bottom;
+		border: $size solid transparent;	
+		border-top: $size solid $color;
+		margin-top: $margin_top;
+		margin-bottom: $margin_bottom;
+		}  
+	}    
+}
+
+/* 
+Usage
+
+.block {
+	width: 50px;
+	height: 50px;
+	position: relative;
+	@include arrow(right,red,5px,auto,auto,0,0,auto,-5px);  
+}
+*/
+
+// silent class
+
+/// FOR FLEX
+
+@mixin flex {
+	display: -webkit-box;
+	display: -ms-flexbox; 
+	display: -webkit-flex; 
+	display: flex;         
+}
+@mixin flex_justify {
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+@mixin flex_wrap {
+	-webkit-box-lines: multiple;
+	-moz-box-lines: multiple;
+	-ms-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+@mixin flex_row_wrap {
+	flex-flow: row wrap; 
+	-ms-flex-flow: row wrap; 
+}
+@mixin flex_align_items($position) {
+	align-items: $position;
+	-ms-flex-pack: $position;
+}
+
+@mixin flex_grid ($child_class, $column_count, $items_width) {		
+	@include flex_justify;
+	&:after {
+		content: '';
+		display: block;			
+		width: 0px;
+		margin: 0 auto;
+		height: 1px;
+	}
+
+	.#{$child_class} {
+		width: $items_width;
+	}
+
+	$margin: calc((100% - #{$items_width}*#{$column_count})/(#{$column_count} - 1)); 
+
+	.#{$child_class}:last-child, .#{$child_class}:nth-last-child(2) {
+ 		margin-left: $margin;
+	}
+
+	@if $column_count == 3 {		
+		.#{$child_class}:nth-child(3n+1), .#{$child_class}:nth-child(3n):not(:last-child) {
+			margin-left: 0;	
+		}		
+	}	
+
+	@if $column_count == 4 {		
+		.#{$child_class}:nth-last-child(3) {
+			margin-left: $margin;
+		}
+
+		.#{$child_class}:nth-child(4n+1),
+		.#{$child_class}:nth-child(4n):not(:last-child), 
+		.#{$child_class}:nth-child(4n+3):not(:last-child):not(:nth-last-child(2)) {
+			margin-left: 0 ;
+		}
+	}
+	@if $column_count == 5 {		
+		.#{$child_class}:nth-last-child(3), .#{$child_class}:nth-last-child(4)  {
+			margin-left: $margin;
+		}
+
+		.#{$child_class}:nth-child(5n+1), .#{$child_class}:nth-child(5n):not(:last-child), 
+		.#{$child_class}:nth-child(5n-1):not(:nth-last-child(1)):not(:nth-last-child(2)), 
+		.#{$child_class}:nth-child(5n-2):not(:last-child):not(:nth-last-child(2)):not(:nth-last-child(3)) {
+			margin-left: 0 ;
+		}		
+	}	
+}
+/* usage
+.container {
+	@include flex_grid(grid_tile, 4, 22%);
+}
+* column_count could be 3,4 or 5
+*/
+
+@mixin fa($unicode, $margin_right: auto, $margin_left: auto) {
+	&:before {
+		font-family: 'FontAwesome';
+		content: $unicode;
+		margin-right: $margin_right;
+		margin-left: $margin_left;
+		//line-height: $line_height;
+	}
+}
+%clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin site_width {	
+	max-width: 1280px;	
+	margin: 0 auto;
+
+	@include respond-to(tablet) {
+		
+	}
+
+	@include respond-to(mobile) {
+		
+	}  
+}

@@ -1,0 +1,496 @@
+* {
+	@include box-sizing;
+}
+
+body {
+    background: #aac;
+}
+$panel_color_1 : #c55500;
+$panel_color_2 : #000;
+
+$volume_color: $panel_color_1;
+$input_range_color: $panel_color_1;
+$input_range_color_2: $panel_color_1;
+
+input , button{
+	outline: none;
+	border: 0;
+	background: 0; 
+}
+
+input[type="checkbox"] , input[type="radio"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;    
+    outline: none;
+    margin: 0; 
+    -moz-appearance: none;
+    opacity: 0;
+}
+
+.player {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+  
+    &.full_screen_on {
+        position: fixed; right: 0; bottom: 0;
+        min-width: 100%; min-height: 100%;
+        width: auto; height: auto; z-index: -100;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        background: #000;
+    }
+}
+.mediaplayer {
+    position: relative;
+    height: 0;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16/9 */
+}
+.mediaplayer video, .mediaplayer .polyfill-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+video::-webkit-media-controls {
+    display: none;
+}
+.control_panel {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #000;
+	font-size: 0;
+	width: 100%;
+	text-align: justify; 
+    overflow: visible!important;
+    border: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.muted {
+    cursor: pointer; 
+    width: 20px;
+    height: 20px;
+    position: relative;
+    z-index: 5;
+}
+.play_btn {
+	position: relative;
+}
+.play {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	background: $panel_color_1;
+    cursor: pointer;
+  
+  &.active {
+   z-index: 2!important;
+  }
+
+  &:before {  
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    border: 10px solid transparent; 
+    border-left: 10px solid #000;
+  }
+}
+
+.play_btn.active_play .pause {
+	z-index: 1;
+}
+.play_btn.active_pause .pause {
+	z-index: -1;
+}
+.pause {
+	position: absolute;
+  cursor: pointer;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	background: $panel_color_1;
+
+  &.active {
+   z-index: 1!important;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 10px; 
+    left: 16px;
+    height: 20px;
+    border-left: 10px double #000; 
+  }
+}
+
+.time_slider {
+    position: relative;
+    width: 60%;
+    
+    .break_full & {
+        width: 75%;
+    }
+    .break_one & {
+        width: 70%;
+    }
+    .break_two & {
+        width: 60%;
+    }
+    .break_three & {
+        width: 50%;
+    }
+} 
+.time-slider {
+	width: 100%;
+}
+.time_wrap {
+    margin-top: 2px;
+    color: $panel_color_1;
+    font-size: 14px;
+}
+.duration {
+    position: relative;
+    margin-left: 8px;
+    &:before {
+        content: '/';
+        position: absolute;
+        top: 0;
+        left: -6px;
+    }
+}
+.mute_btn {
+    position: relative;
+    margin-top: 2px;
+}
+.volume_slider {
+    width: 10%;
+    margin-right: 15px;  
+}
+
+.full_screen_btn {
+    position: relative;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    background: $panel_color_1;
+    cursor: pointer;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        border: 3px solid transparent; 
+        border-top: 3px solid #000; 
+        border-right: 3px solid #000;
+        cursor: pointer;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 2px;
+        border: 3px solid transparent; 
+        border-bottom: 3px solid #000; 
+        border-left: 3px solid #000;
+        cursor: pointer;
+
+    }
+  
+    &.full_screen_on {
+        &:before{
+            transform: rotate(180deg);
+            top: 0;
+            right: 0;
+        }
+        &:after {
+            transform: rotate(180deg);
+            bottom: 0;
+            left: 0;
+        }
+    }
+    input {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+}
+
+ 
+
+
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+
+    /* Hides the slider so custom styles can be added */
+    background: transparent; 
+    border-color: transparent;
+    color: transparent;
+}
+
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 20px;
+    width: 8px;
+    border-radius: 3px;
+    background: $input_range_color_2;
+    cursor: pointer;
+    margin-top: -7px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 20px;
+    width: 8px;
+    border-radius: 3px;
+    background: $input_range_color_2;
+}
+
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: $input_range_color;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: $input_range_color;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: $input_range_color;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: $input_range_color;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: $input_range_color;
+}
+input[type=range]::-ms-fill-upper {
+    background: $input_range_color;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: $input_range_color;
+}
+
+
+
+
+.ic_volume {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+.ic_volume.on { 
+  
+    &.v_66 {
+        .ic_volume_arc_3 {
+            display: none;
+        }    
+    }
+    &.v_33 {
+        .ic_volume_arc_2 {
+            display: none;
+        }
+    }
+    .ic_volume_arc_1 {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        width: 4px;
+        height: 4px;
+        margin-top: -3px;
+        border: 1px solid $volume_color;
+        border-width: 1px 1px 0 0;
+        border-radius: 0 15px 0 0;
+        transform: rotate(45deg); 
+    }
+    .ic_volume_arc_2 {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        width: 8px;
+        height: 8px;
+        margin-top: -5px;
+        border: 1px solid $volume_color;
+        border-width: 1px 1px 0 0;
+        border-radius: 0 15px 0 0;
+        transform: rotate(45deg); 
+    }
+    .ic_volume_arc_3 {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        width: 12px;
+        height: 12px;
+        margin-top: -7px;
+        border: 1px solid $volume_color;
+        border-width: 1px 1px 0 0;
+        border-radius: 0 15px 0 0;
+        transform: rotate(45deg); 
+    }
+    .ic_volume_rect {
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;    
+            left: -2px;
+            border: 7px solid transparent;
+            border-right-color: $volume_color;
+            background: transparent;
+            margin: -8px 0 0;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;    
+            left: 4px;
+            width: 4px;
+            height: 6px;
+            margin-top: -4px;
+            background: $volume_color;
+        }
+    }
+}
+
+.ic_volume.mute {  
+    .ic_volume_arc_1 {
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $volume_color;
+        margin-top: -9px;
+        border-radius: 16px;
+    }
+    .ic_volume_arc_2 {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 18px;
+        border-top: 1px solid $volume_color;
+
+        transform: rotate(-45deg); 
+    }
+    .ic_volume_rect {
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;    
+            left: -2px;
+            border: 7px solid transparent;
+            border-right-color: $volume_color;
+            background: transparent;
+            margin: -8px 0 0;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;    
+            left: 4px;
+            width: 4px;
+            height: 6px;
+            margin-top: -4px;
+            background: $volume_color;    
+        } 
+    }
+}
+.screen_tooltip {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    width: 160px;
+    height: 90px;
+
+    background-position-x: 0px;
+    background-position-y: 0;
+
+}
+
+.player_1_wrapper {
+    max-width: 900px;
+    margin: auto;
+    margin-top: 100px;
+
+    .screen_tooltip {
+        background: url('../img/sprite_1.png')  no-repeat;
+    }  
+}
+
+.player_2_wrapper { 
+    max-width: 900px;
+    margin: auto;
+    margin-top: 100px;
+    
+    .screen_tooltip {
+        background: url('../img/sprite_2.png')  no-repeat;
+    }  
+}
+
+
+

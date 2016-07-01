@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AM Player</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+	<script src="js/main.js"></script>
+</head>
+<body>
+	
+	
+
+	<div class="main">		
+		
+		
+		<video  poster="img/img_1.jpg" controls preload="yes" id="player_1" class="am_player">
+		    <source src="video/video_youtube_1.mp4" type="video/mp4" />	      
+		</video> 
+		 
+		<video  poster="img/img_2.jpg" controls preload="yes" id="player_2" class="am_player">
+		    <source src="video/video_youtube_2.mp4" type="video/mp4" />	      
+		</video>  
+		
+		
+		
+		  
+		  
+		<script>
+			$('#player_1').Am_player({
+			    sprites_count : 29,
+		        sprite_step : 92,                 
+			});  
+			$('#player_2').Am_player({
+			    sprites_count : 34,
+		        sprite_step : 92,                 
+			});	 
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- <div class="player">
+		    <div class="mediaplayer mediaplayer_normal_size mediaplayer_stopped" ondblclick="toggleFullScreen()">
+		        <video  poster="https://i.ytimg.com/vi/KK9bwTlAvgo/maxresdefault.jpg" controls preload="yes" class="am_player">
+		            <source src="video/video_youtube.mp4" type="video/mp4" />	      
+		        </video> 
+		    </div>	
+			
+			<div class="control_panel">
+					<div class="play_btn active_pause">
+						<button class="play"></button>
+		 
+						<button class="pause"></button>   
+					</div> 
+					<div class="time_slider">
+						<input class="time-slider" id="time-slider" type="range" disabled value="0" step="any" "/>
+						<div class="screen_tooltip"></div>
+					</div>
+					<div class="time_wrap">
+						<span class="current-time">00:00</span>
+						<span class="duration"></span>		
+					</div>					
+		
+					<div class="mute_btn">
+						<input class="muted" type="checkbox" />
+						<div class="ic_volume on ">
+						 <span class="ic_volume_arc_1"></span>
+						 <span class="ic_volume_arc_2"></span> 
+						 <span class="ic_volume_arc_3"></span> 
+						 <div class="ic_volume_rect"></div>  
+						</div>
+					</div>
+					<div class="volume_slider">
+						<input class="volume-slider" id="volume-slider" type="range" value="1" max="1" step="0.01" onchange="updateVolume(this.value);"/>
+					</div>
+		
+					<div class="full_screen_btn">
+						<input type="button" class="full_screen_input" value="" onclick="toggleFullScreen()">
+					</div>
+				</div>
+		</div>	 -->
+	</div>
+	
+	<div class="footer_wrapper">	
+		<div class="footer">		
+			
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		
+	</script>
+
+
+
+</body>
+</html>

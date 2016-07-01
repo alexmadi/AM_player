@@ -1,0 +1,9 @@
+.header_wrapper {
+	background: #76c7c0;
+
+	.header {
+		@include site_width;
+
+		
+	}
+}
